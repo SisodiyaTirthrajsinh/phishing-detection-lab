@@ -1,0 +1,23 @@
+title: Suspicious Email Attachment
+id: 123e4567-e89b-12d3-a456-426614174000
+status: experimental
+description: Detects potentially malicious email attachments in logs
+author: Tirthraj Sisodiya
+logsource:
+  category: email
+  product: exchange
+detection:
+  selection:
+    attachment_type|contains:
+      - "exe"
+      - "zip"
+      - "xlsm"
+  condition: selection
+fields:
+  - timestamp
+  - sender
+  - recipient
+  - attachment_name
+falsepositives:
+  - Internal testing files
+level: high
